@@ -20,4 +20,10 @@ class CustomerController
     @RequestMapping("/create", method = arrayOf(RequestMethod.POST))
     @ResponseBody
     fun create(@RequestBody user: Customer): Customer = repository.save(user)
+
+    @PutMapping
+    @ResponseBody
+    fun updateEmployee(@RequestBody user: Customer) {
+        repository.save(user)
+    }
 }
