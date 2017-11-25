@@ -23,7 +23,13 @@ class CustomerController
 
     @PutMapping
     @ResponseBody
-    fun updateEmployee(@RequestBody user: Customer) {
+    fun updateUser(@RequestBody user: Customer) {
         repository.save(user)
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseBody
+    fun deleteEmployee(@PathVariable id: Long) {
+        repository.delete(id)
     }
 }
