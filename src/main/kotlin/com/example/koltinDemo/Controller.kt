@@ -17,11 +17,7 @@ class CustomerController
     @RequestMapping("/{name}", method = arrayOf(RequestMethod.GET))
     fun findByLastName(@PathVariable name: String) = repository.findByLastName(name)
 
-    @RequestMapping("/create")
+    @RequestMapping("/create", method = arrayOf(RequestMethod.POST))
     @ResponseBody
-    fun create(firstname: String?, lastname: String?) {
-        print(firstname);
-        var newUser = Customer("li", "tao")
-        repository.save(newUser)
-    }
+    fun create(@RequestBody user: Customer): Customer = repository.save(user)
 }
