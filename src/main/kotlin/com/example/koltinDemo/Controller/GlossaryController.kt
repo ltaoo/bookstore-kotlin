@@ -2,6 +2,7 @@ package com.example.koltinDemo.Controller
 
 import com.example.koltinDemo.Repository.GlossaryRepository
 import com.example.koltinDemo.Entity.Glossary
+import com.example.koltinDemo.Entity.Response
 import com.google.gson.Gson
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
@@ -12,7 +13,10 @@ class GlossaryController
 @Autowired constructor(val repository: GlossaryRepository) {
 
     @RequestMapping("/glossary")
-    fun findAll() = repository.findAll()
+    fun findAll(): Response {
+        val lists: MutableList<Glossary> = repository.findAll()
+        return Response(result = lists)
+    }
 
     @RequestMapping("/glossary/create", method = arrayOf(RequestMethod.POST))
     @ResponseBody
